@@ -10,8 +10,6 @@ This project processes a video file by extracting frames, transcribing audio, cl
 3. [Usage](#usage)
 4. [Functions](#functions)
 5. [Output](#output)
-6. [Contributing](#contributing)
-7. [License](#license)
 
 ## Requirements
 
