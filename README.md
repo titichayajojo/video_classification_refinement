@@ -1,3 +1,7 @@
+Here is the revised version of your project documentation, including your repository URL:
+
+---
+
 # Video Classification and Refinement using OpenAI
 
 This project processes a video file by extracting frames, transcribing audio, classifying the video, enhancing frames based on classification, and saving results. It utilizes OpenAI's API for classification and DALL-E 2 for image enhancements.
@@ -9,7 +13,7 @@ This project processes a video file by extracting frames, transcribing audio, cl
 3. [Usage](#usage)
 4. [Functions](#functions)
 5. [Output](#output)
-6. [PSNR and SSIM Metrics](#psnr-and-ssim-metrics)
+6. [IQA Metrics](#iqa-metrics)
 
 ## Requirements
 
@@ -35,8 +39,8 @@ To run this project, you need to have the following Python packages installed:
 1. **Clone the Repository**
 
    ```bash
-   git clone <repository-url>
-   cd <repository-directory>
+   git clone https://github.com/titichayajojo/video_classification_refinement.git
+   cd video_classification_refinement
    ```
 
 2. **Create a Virtual Environment** (optional but recommended)
@@ -129,45 +133,26 @@ Creates and saves a horizontal collage from the list of image paths.
 - **Refined Images:** Saved in the `results/` directory, with each image named `image_{i}.png`.
 - **Collage:** A collage of the images is saved as `collage.png` in the results directory.
 
-## PSNR and SSIM Metrics
+## IQA Metrics
 
-To evaluate the quality of the images before and after refinement, you can use PSNR (Peak Signal-to-Noise Ratio) and SSIM (Structural Similarity Index).
-Referenced: https://github.com/jsh-me/psnr-ssim-tool
-Follow these instructions to compute these metrics:
+To evaluate the quality of the images before and after refinement, you can use Image Quality Assessment (IQA) metrics based on the BRISQUE (Blind/Referenceless Image Spatial Quality Evaluator) model. Refer to the [IQA BRISQUE GitHub repository](https://github.com/krshrimali/No-Reference-Image-Quality-Assessment-using-BRISQUE-Model?tab=readme-ov-file) for more details.
 
-1. **Clone the PSNR and SSIM Tool Repository**
+### Example Code for Running IQA
 
-   ```bash
-   git clone https://github.com/jsh-me/psnr-ssim-tool.git
-   cd psnr-ssim-tool
-   ```
+To calculate IQA scores for the original and refined frames, use the following commands:
 
-2. **Install Required Dependencies**
+1. **Calculate IQA for Original Frame**
 
    ```bash
-   pip install -r requirements.txt
+   python3 brisquequality.py images/input/taichi/taichi_6/img_0.png
    ```
 
-3. **Run PSNR Calculation**
-
-   Replace paths with your actual image file paths:
+2. **Calculate IQA for Refined Frame**
 
    ```bash
-   python psnr.py --original ./frame/taichi_1_before.png --contrast ./result/taichi_1_after.png
-   python psnr.py --original ./frame/vox_1_before.png --contrast ./result/vox_1_after.png
-   python psnr.py --original ./frame/ted_1_before.png --contrast ./result/ted_1_after.png
+   python3 brisquequality.py images/output/taichi/taichi_6/image_0.png
    ```
 
-   - This will output the PSNR values for each image pair.
+These commands will output the IQA scores for each image, helping you assess the improvement in image quality after the refinement process.
 
-4. **Run SSIM Calculation**
-
-   Replace paths with your actual image file paths:
-
-   ```bash
-   python ssim.py --original ./frame/taichi_1_before.png --contrast ./result/taichi_1_after.png
-   python ssim.py --original ./frame/vox_1_before.png --contrast ./result/vox_1_after.png
-   python ssim.py --original ./frame/ted_1_before.png --contrast ./result/ted_1_after.png
-   ```
-
-   - This will output the SSIM values for each image pair.
+---
